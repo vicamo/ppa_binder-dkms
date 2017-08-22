@@ -1068,7 +1068,6 @@ static void binder_set_nice(long nice)
 	set_user_nice(current, min_nice);
 	if (min_nice <= MAX_NICE)
 		return;
-	binder_user_error("%d RLIMIT_NICE not set\n", current->pid);
 }
 
 static struct binder_node *binder_get_node_ilocked(struct binder_proc *proc,
