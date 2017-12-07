@@ -1,0 +1,28 @@
+Source: binder-linux
+Section: kernel
+Priority: optional
+Maintainer:
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Arve Hjønevåg <arve@android.com>
+ Riley Andrews <riandrews@android.com>
+Uploaders: You-Sheng Yang <vicamo@gmail.com>
+Build-Depends:
+ debhelper (>=9),
+ dkms,
+ linux-kbuild-4.14
+Standards-Version: 4.1.1
+Homepage: https://github.com/vicamo/ppa_binder-linux
+Vcs-Browser: https://github.com/vicamo/ppa_binder-linux
+Vcs-Git: https://github.com/vicamo/ppa_binder-linux.git
+
+Package: binder-dkms
+Architecture: all
+Depends:
+ ${misc:Depends},
+ linux-kbuild-4.14
+Provides: binder-modules
+Description: DKMS files to build and install ANDROID binder
+ This package contains a out-of-tree version of the core Android binder driver.
+ .
+ To install this package, you have to install the header files for your current
+ kernel manually (usually included in the "linux-headers-<your architecture>").
