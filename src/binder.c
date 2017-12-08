@@ -142,9 +142,11 @@ enum {
 static uint32_t binder_debug_mask = BINDER_DEBUG_USER_ERROR |
 	BINDER_DEBUG_FAILED_TRANSACTION | BINDER_DEBUG_DEAD_TRANSACTION;
 module_param_named(debug_mask, binder_debug_mask, uint, S_IWUSR | S_IRUGO);
+MODULE_PARM_DESC(debug_mask, "binder debug mask");
 
 static char *binder_devices_param = CONFIG_ANDROID_BINDER_DEVICES;
 module_param_named(devices, binder_devices_param, charp, 0444);
+MODULE_PARM_DESC(devices, "binder devices");
 
 static DECLARE_WAIT_QUEUE_HEAD(binder_user_error_wait);
 static int binder_stop_on_user_error;
@@ -5557,7 +5559,23 @@ err_alloc_device_names_failed:
 	return ret;
 }
 
-device_initcall(binder_init);
+static void __exit binder_exit(void)
+{
+	struct binder_device *device;
+	struct hlist_node *tmp;
+
+	hlist_for_each_entry_safe(device, tmp, &binder_devices, hlist) {
+		misc_deregister(&device->miscdev);
+		hlist_del(&device->hlist);
+		kfree(device->context.name);
+		kfree(device);
+	}
+
+	debugfs_remove_recursive(binder_debugfs_dir_entry_root);
+}
+
+module_init(binder_init);
+module_exit(binder_exit);
 
 #define CREATE_TRACE_POINTS
 #include "binder_trace.h"

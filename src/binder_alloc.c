@@ -42,8 +42,9 @@ enum {
 };
 static uint32_t binder_alloc_debug_mask;
 
-module_param_named(debug_mask, binder_alloc_debug_mask,
+module_param_named(alloc_debug_mask, binder_alloc_debug_mask,
 		   uint, 0644);
+MODULE_PARM_DESC(alloc_debug_mask, "binder allocation debug mask");
 
 #define binder_alloc_debug(mask, x...) \
 	do { \
