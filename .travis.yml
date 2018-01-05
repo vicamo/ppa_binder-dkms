@@ -26,7 +26,7 @@ matrix:
 
 branches:
   only:
-  - /[^\/]+/
+  - /^[^\/]+$/
   - /^\d+\.\d+/
 
 before_install:
@@ -85,3 +85,8 @@ deploy:
   on:
     tags: true
     condition: "${DEBIAN_ARCH} = amd64"
+
+notifications:
+  slack:
+    rooms:
+    - secure: ZdDF6YYZfwlMx2H21h/i1AWgoaQtQQzZQOm9iJyd3gOPuVQ4ADTZ1rvPJEfIzvILXIiIuSX1xdqhzhbqgHaC8r3M3+H6V+1JafN2zZzSbrYiVn6YSB64tpdoiNywbBOYxMXyvoquvIu/jN18C7LJnfiEzzBrLtojiZY37Z2krbzGfbLKzl7b5UxBhHsJLc7Ji1qzyjVukGpDXELNwnzEH0pIJ7Ify9+lCOwuI8p0uzztmX5S8q8LeqSwmwMT2yczn7R8BoUNrWLD3ZS+wUVSXdjVRd5DOUR36NQOSE0mHujP32XZ8kLGsFElNOmryzAK2Bfn567jHf60hLW1NQ+BdyeuUq8f4MNFw2E1geEaPw5llXgJM60MJGsWAS/OU9hHi0/w2U2WWNarghSXpSUQOMxAoLOzculhD3qZC+WC7H8EpoElPOiiQu5SP2I2OxsDyoFlTp3VBN6VuYKjICqYosFD9vDp+ZkBoLscEacgnGR46jXOzm2jHUYk/OTA2qzn9zR8pqQIq6iPIYliqpvs8QTEHHFiByVadvZPaV0w02br24h4vzR1IMVhc/Z5vXZtoBFJUfE2zJRgVc3xGXkj5ddZPQmwWA69VG46/+CoNbWlqUrDKTXLCu90cgZXhaROyEwdYzJcs8y/8bmyo3R5Wd+TcmqvVbr4wW2CcmSP9ns=
