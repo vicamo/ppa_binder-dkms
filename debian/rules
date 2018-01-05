@@ -10,20 +10,16 @@ KERNEL_VERSION ?= $(word 1,$(subst +, ,$(DEB_VERSION_UPSTREAM)))
 %:
 	dh $@ --with dkms
 
-override_dh_auto_configure:
-	exit 0
-
-override_dh_auto_build:
-	exit 0
-
-override_dh_auto_install:
+override_dh_install:
 	# Build install files for the dkms'ified sources
 	sed -e 's/@PACKAGE_VERSION@/${DEB_VERSION_UPSTREAM}/g' \
 	    -e 's/@KERNEL_VERSION@/$(KERNEL_VERSION)/g' \
 	  < debian/binder-dkms.dkms.in > debian/binder-dkms.dkms
 	sed -e 's/@PACKAGE_VERSION@/${DEB_VERSION_UPSTREAM}/g' \
 	  < debian/binder-dkms.install.in > debian/binder-dkms.install
-	dh_auto_install
+	install -D -m 644 debian/binder-dkms.modules-load.conf \
+	  debian/binder-dkms/etc/modules-load.d/binder-dkms.conf
+	dh_install
 
 override_dh_clean:
 	rm -f debian/binder-dkms.dkms
