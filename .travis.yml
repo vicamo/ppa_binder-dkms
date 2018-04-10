@@ -23,6 +23,8 @@ env:
 
 matrix:
   fast_finish: true
+  allow_failures:
+  - env: SUITE=buster DEBIAN_ARCH=armel KERNEL_ARCH=marvell
 
 branches:
   only:
@@ -77,7 +79,8 @@ before_deploy:
     tee .bintray.json
 
 deploy:
-- provider: bintray
+  skip_cleanup: true
+  provider: bintray
   file: .bintray.json
   user: vicamo
   key:
