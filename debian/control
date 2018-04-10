@@ -18,7 +18,7 @@ Package: binder-dkms
 Architecture: all
 Depends:
  ${misc:Depends},
- linux-kbuild-4.15
+ linux-kbuild-4.16
 Provides: binder-modules
 Description: DKMS files to build and install ANDROID binder
  This package contains a out-of-tree version of the core Android binder driver.

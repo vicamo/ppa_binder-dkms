@@ -1,3 +1,9 @@
+binder-linux (4.16+20180410-1) UNRELEASED; urgency=low
+
+  * sync v4.16
+
+ -- You-Sheng Yang <vicamo@gmail.com>  Tue, 10 Apr 2018 17:26:08 +0800
+
 binder-linux (4.15+20180410-1) UNRELEASED; urgency=low
 
   * sync v4.15
